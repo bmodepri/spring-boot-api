@@ -1,0 +1,45 @@
+package de.restaurantsearch.configuration;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
+import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import javax.sql.DataSource;
+
+
+@org.springframework.context.annotation.Configuration
+@EnableSwagger2
+public class Configuration {
+
+    @Autowired
+    private Environment env;
+
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build();
+    }
+
+    @Bean
+    public DataSource getDataSource()
+    {
+        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.driverClassName(env.getProperty("org.postgresql.Driver"));
+        dataSourceBuilder.url(env.getProperty("jdbc:postgresql://raja.db.elephantsql.com:5432/gvvyfaip"));
+        dataSourceBuilder.username(env.getProperty("gvvyfaip"));
+        dataSourceBuilder.password(env.getProperty("r_elPrUFq4vBAF5JSYVG261S0UO-w7oU"));
+        return dataSourceBuilder.build();
+    }
+}
