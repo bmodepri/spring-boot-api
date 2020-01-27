@@ -1,12 +1,9 @@
 package de.restaurantsearch.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -36,10 +33,11 @@ public class Configuration {
     public DataSource getDataSource()
     {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName(env.getProperty("org.postgresql.Driver"));
-        dataSourceBuilder.url(env.getProperty("jdbc:postgresql://raja.db.elephantsql.com:5432/gvvyfaip"));
-        dataSourceBuilder.username(env.getProperty("gvvyfaip"));
-        dataSourceBuilder.password(env.getProperty("r_elPrUFq4vBAF5JSYVG261S0UO-w7oU"));
+        dataSourceBuilder.driverClassName(env.getProperty("spring.datasource.driverClassName"));
+        dataSourceBuilder.url(env.getProperty("spring.datasource.jdbcUrl"));
+        dataSourceBuilder.username(env.getProperty("spring.datasource.username"));
+        dataSourceBuilder.password(env.getProperty("spring.datasource.password"));
+
         return dataSourceBuilder.build();
     }
 }
