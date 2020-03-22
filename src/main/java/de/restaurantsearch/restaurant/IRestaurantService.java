@@ -1,22 +1,18 @@
 package de.restaurantsearch.restaurant;
 
-import de.restaurantsearch.exceptions.RestaurantNotFoundException;
-import de.restaurantsearch.exceptions.ServiceUnavailableException;
-import org.springframework.http.HttpStatus;
-
-import java.util.Optional;
+import org.springframework.http.ResponseEntity;
 
 public interface IRestaurantService {
 
-    void createRestaurant(Restaurant restaurant);
+    ResponseEntity createRestaurant(Restaurant restaurant);
 
-    Iterable<Restaurant> getRestaurants();
+    ResponseEntity getRestaurants();
 
-    Optional<Restaurant> getRestaurantById (Long id) throws RestaurantNotFoundException;
+    ResponseEntity getRestaurantById (Long id);
 
-    HttpStatus updateRestaurant(Restaurant restaurant) throws RestaurantNotFoundException;
+    ResponseEntity updateRestaurant(Restaurant restaurant);
 
-    void deleteRestaurant(Restaurant restaurant) throws RestaurantNotFoundException;
+    ResponseEntity deleteRestaurant(Restaurant restaurant);
 
-    void deleteRestaurantById(Long id) throws RestaurantNotFoundException;
+    ResponseEntity deleteRestaurantById(Long id);
 }
