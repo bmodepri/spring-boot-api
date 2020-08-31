@@ -1,2 +1,2 @@
-# srping-boot-api
+# spring-boot-api
 projeto para estudos
