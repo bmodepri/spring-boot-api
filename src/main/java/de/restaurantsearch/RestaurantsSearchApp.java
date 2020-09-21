@@ -10,7 +10,9 @@ public class RestaurantsSearchApp {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(RestaurantsSearchApp.class, args);
+		SpringApplication.run(
+			RestaurantsSearchApp.class, 
+			args);
 	}
 
 }
