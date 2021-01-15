@@ -1,2 +1,2 @@
 # spring-boot-api
-projeto para estudos
+creating a sample api using Spring boot - just for study.
